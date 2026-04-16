@@ -112,8 +112,8 @@
     .hero{background:linear-gradient(135deg,#0f172a 0%,#1e3a5f 50%,#2563eb 100%);color:#fff;padding:52px 48px 44px;position:relative;overflow:hidden;}
     .hero::before{content:'';position:absolute;inset:0;opacity:.04;background-image:radial-gradient(circle,#fff 1px,transparent 1px);background-size:24px 24px;}
     .hero-inner{display:flex;gap:36px;align-items:center;position:relative;z-index:1;}
-    .photo-ring{width:128px;height:128px;border-radius:50%;border:2px dashed rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;flex-shrink:0;animation:spin 20s linear infinite;}
-    .photo-ring img{width:116px;height:116px;border-radius:50%;border:4px solid rgba(255,255,255,.3);object-fit:cover;animation:pulse 3s infinite,float 4s ease-in-out infinite;background:#1e3a5f;}
+    .photo-ring{width:128px;height:128px;border-radius:50%;border:2px dashed rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;flex-shrink:0;animation:spin 12s linear infinite;}
+    .photo-ring img{width:116px;height:116px;border-radius:50%;border:4px solid rgba(255,255,255,.3);object-fit:cover;object-position:center top;animation:pulse 3s infinite;background:#1e3a5f;}
     .hero-text h1{font-size:30px;font-weight:800;letter-spacing:-.5px;animation:fadeUp .5s ease both;}
     .typed-wrap{height:26px;overflow:hidden;margin-top:5px;}
     .typed{font-size:14px;opacity:.85;display:inline-block;overflow:hidden;white-space:nowrap;border-right:2px solid rgba(255,255,255,.7);animation:typing 3.5s steps(60,end) .5s both,blink .75s step-end infinite;}
@@ -242,6 +242,25 @@
       .hero,.pg-head{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
       .section{margin-bottom:18px !important;}
       a{color:inherit !important;text-decoration:none !important;}
+      /* freeze all animations so photo renders correctly */
+      *{animation:none !important;transition:none !important;}
+      /* fix photo position in print */
+      .photo-ring{
+        animation:none !important;
+        transform:none !important;
+        border:2px solid rgba(255,255,255,.3) !important;
+      }
+      .photo-ring img{
+        animation:none !important;
+        transform:none !important;
+        display:block !important;
+        width:100px !important;
+        height:100px !important;
+        border-radius:50% !important;
+        object-fit:cover !important;
+        object-position:center top !important;
+        border:3px solid rgba(255,255,255,.4) !important;
+      }
       /* prevent mid-card breaks */
       .proj-group,
       .proj-group .pg-body,
@@ -252,20 +271,14 @@
         page-break-inside: avoid !important;
         break-inside: avoid !important;
       }
-      /* keep header glued to its body */
       .pg-head{
         page-break-after: avoid !important;
         break-after: avoid !important;
-      }
-      /* start projects section on a new page so groups aren't orphaned */
-      .section:last-of-type{
-        page-break-before: auto !important;
       }
       .proj-groups{
         page-break-inside: avoid !important;
         break-inside: avoid !important;
       }
-      /* sidebar stays put */
       .sidebar{
         page-break-inside: avoid !important;
         break-inside: avoid !important;
@@ -660,6 +673,9 @@
         .body{grid-template-columns:220px 1fr !important;}
         .proj-groups{grid-template-columns:1fr 1fr !important;}
         .hero,.pg-head{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+        *{animation:none !important;transition:none !important;}
+        .photo-ring{animation:none !important;transform:none !important;border:2px solid rgba(255,255,255,.3) !important;}
+        .photo-ring img{animation:none !important;transform:none !important;display:block !important;width:100px !important;height:100px !important;border-radius:50% !important;object-fit:cover !important;object-position:center top !important;}
         .proj-group,.exp-item,.edu-card,.cert-item,.section{page-break-inside:avoid !important;break-inside:avoid !important;}
         .pg-head{page-break-after:avoid !important;break-after:avoid !important;}
         a{color:inherit !important;text-decoration:none !important;}
