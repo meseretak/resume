@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" prefix="og: https://ogp.me/ns#">
 <head>
   <meta charset="UTF-8"/>
@@ -723,72 +723,94 @@
   }
 </script>
 
-<!-- ══ AI CHAT WIDGET ══ -->
+
+<!-- ══ AI CHAT WIDGET v2 ══ -->
 <style>
-  @keyframes chatPop{from{opacity:0;transform:scale(.85) translateY(20px)}to{opacity:1;transform:scale(1) translateY(0)}}
-  @keyframes msgIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-  @keyframes dotBounce{0%,80%,100%{transform:translateY(0)}40%{transform:translateY(-6px)}}
-  .ai-fab{position:fixed;bottom:28px;left:28px;width:54px;height:54px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#06b6d4);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,99,235,.45);z-index:1000;transition:transform .2s,box-shadow .2s;animation:pulse 3s infinite;}
-  .ai-fab:hover{transform:scale(1.1);box-shadow:0 6px 28px rgba(37,99,235,.6);}
-  .ai-fab svg{width:26px;height:26px;fill:#fff;}
-  .ai-fab .notif{position:absolute;top:2px;right:2px;width:14px;height:14px;background:#10b981;border-radius:50%;border:2px solid #fff;font-size:8px;color:#fff;display:flex;align-items:center;justify-content:center;}
-  .ai-panel{position:fixed;bottom:92px;left:28px;width:340px;height:480px;background:#fff;border-radius:20px;box-shadow:0 12px 48px rgba(0,0,0,.18);z-index:1000;display:none;flex-direction:column;overflow:hidden;animation:chatPop .3s ease;}
-  .ai-panel.open{display:flex;}
-  .ai-header{background:linear-gradient(135deg,#1e3a5f,#2563eb);padding:14px 18px;display:flex;align-items:center;gap:10px;}
-  .ai-avatar{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
-  .ai-header-text .ai-name{font-size:13px;font-weight:700;color:#fff;}
-  .ai-header-text .ai-status{font-size:11px;color:rgba(255,255,255,.7);display:flex;align-items:center;gap:4px;}
-  .ai-header-text .ai-status::before{content:'';width:7px;height:7px;background:#10b981;border-radius:50%;display:inline-block;}
-  .ai-close{margin-left:auto;background:none;border:none;color:rgba(255,255,255,.7);cursor:pointer;font-size:18px;line-height:1;padding:2px 6px;}
-  .ai-close:hover{color:#fff;}
-  .ai-messages{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px;background:#f8faff;}
-  .ai-messages::-webkit-scrollbar{width:4px;}
-  .ai-messages::-webkit-scrollbar-thumb{background:#dbeafe;border-radius:4px;}
-  .msg{max-width:85%;padding:9px 13px;border-radius:14px;font-size:12.5px;line-height:1.55;animation:msgIn .25s ease;}
-  .msg.bot{background:#fff;color:#1e293b;border:1px solid #e2e8f0;border-bottom-left-radius:4px;align-self:flex-start;box-shadow:0 1px 4px rgba(0,0,0,.06);}
-  .msg.user{background:linear-gradient(135deg,#2563eb,#06b6d4);color:#fff;border-bottom-right-radius:4px;align-self:flex-end;}
-  .typing{display:flex;gap:4px;padding:10px 14px;background:#fff;border:1px solid #e2e8f0;border-radius:14px;border-bottom-left-radius:4px;align-self:flex-start;width:52px;}
+  @keyframes chatPop{from{opacity:0;transform:scale(.88) translateY(24px)}to{opacity:1;transform:scale(1) translateY(0)}}
+  @keyframes msgIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes dotBounce{0%,80%,100%{transform:translateY(0)}40%{transform:translateY(-7px)}}
+  @keyframes fabPulse{0%,100%{box-shadow:0 4px 20px rgba(37,99,235,.5)}50%{box-shadow:0 4px 32px rgba(37,99,235,.85),0 0 0 8px rgba(37,99,235,.12)}}
+  @keyframes badgePing{0%,100%{transform:scale(1)}50%{transform:scale(1.3)}}
+  .ai-fab{position:fixed;bottom:28px;left:28px;width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,#1e3a5f,#2563eb,#06b6d4);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:1001;transition:transform .2s;animation:fabPulse 2.5s infinite;}
+  .ai-fab:hover{transform:scale(1.12);}
+  .ai-fab-icon{font-size:26px;line-height:1;}
+  .ai-fab .notif{position:absolute;top:1px;right:1px;width:18px;height:18px;background:linear-gradient(135deg,#10b981,#06b6d4);border-radius:50%;border:2px solid #fff;font-size:8px;font-weight:700;color:#fff;display:flex;align-items:center;justify-content:center;animation:badgePing 2s infinite;}
+  .ai-panel{position:fixed;bottom:98px;left:28px;width:360px;height:520px;background:#fff;border-radius:24px;box-shadow:0 20px 60px rgba(0,0,0,.2),0 0 0 1px rgba(37,99,235,.08);z-index:1001;display:none;flex-direction:column;overflow:hidden;}
+  .ai-panel.open{display:flex;animation:chatPop .3s cubic-bezier(.34,1.56,.64,1);}
+  .ai-header{background:linear-gradient(135deg,#0f172a 0%,#1e3a5f 60%,#2563eb 100%);padding:16px 18px;display:flex;align-items:center;gap:12px;position:relative;overflow:hidden;}
+  .ai-header::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 20% 50%,rgba(255,255,255,.06) 0%,transparent 60%);}
+  .ai-avatar-wrap{position:relative;flex-shrink:0;}
+  .ai-avatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,rgba(255,255,255,.2),rgba(255,255,255,.08));border:2px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;font-size:20px;}
+  .ai-online-dot{position:absolute;bottom:1px;right:1px;width:10px;height:10px;background:#10b981;border-radius:50%;border:2px solid #1e3a5f;}
+  .ai-header-info{flex:1;position:relative;z-index:1;}
+  .ai-name{font-size:14px;font-weight:700;color:#fff;}
+  .ai-subtitle{font-size:11px;color:rgba(255,255,255,.65);margin-top:2px;}
+  .ai-header-actions{display:flex;gap:6px;position:relative;z-index:1;}
+  .ai-hbtn{width:28px;height:28px;border-radius:8px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.8);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:13px;transition:background .15s;}
+  .ai-hbtn:hover{background:rgba(255,255,255,.22);color:#fff;}
+  .ai-messages{flex:1;overflow-y:auto;padding:14px 12px;display:flex;flex-direction:column;gap:10px;background:linear-gradient(180deg,#f0f4ff,#f8faff);}
+  .ai-messages::-webkit-scrollbar{width:3px;}
+  .ai-messages::-webkit-scrollbar-thumb{background:#bfdbfe;border-radius:3px;}
+  .msg-row{display:flex;gap:8px;align-items:flex-end;}
+  .msg-row.user{flex-direction:row-reverse;}
+  .msg-bot-av{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#06b6d4);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;}
+  .msg{max-width:82%;padding:10px 14px;border-radius:18px;font-size:12.5px;line-height:1.6;animation:msgIn .25s ease;white-space:pre-line;}
+  .msg.bot{background:#fff;color:#1e293b;border:1px solid #e2e8f0;border-bottom-left-radius:5px;box-shadow:0 2px 8px rgba(0,0,0,.06);}
+  .msg.user{background:linear-gradient(135deg,#2563eb,#06b6d4);color:#fff;border-bottom-right-radius:5px;box-shadow:0 2px 10px rgba(37,99,235,.3);}
+  .msg-time{font-size:10px;color:#94a3b8;margin-top:2px;}
+  .msg-time.bt{padding-left:36px;}
+  .typing-row{display:flex;gap:8px;align-items:flex-end;}
+  .typing{display:flex;gap:5px;padding:12px 16px;background:#fff;border:1px solid #e2e8f0;border-radius:18px;border-bottom-left-radius:5px;box-shadow:0 2px 8px rgba(0,0,0,.06);}
   .typing span{width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:dotBounce .9s infinite;}
-  .typing span:nth-child(2){animation-delay:.15s;}
-  .typing span:nth-child(3){animation-delay:.3s;}
-  .ai-suggestions{padding:8px 12px;display:flex;flex-wrap:wrap;gap:5px;background:#f0f4ff;border-top:1px solid #e2e8f0;}
-  .sug-btn{background:#fff;border:1px solid #bfdbfe;color:#1e40af;font-size:11px;padding:4px 10px;border-radius:20px;cursor:pointer;transition:background .15s;}
-  .sug-btn:hover{background:#dbeafe;}
-  .ai-input-row{display:flex;gap:8px;padding:10px 12px;border-top:1px solid #e2e8f0;background:#fff;}
-  .ai-input{flex:1;border:1px solid #e2e8f0;border-radius:20px;padding:8px 14px;font-size:12.5px;outline:none;font-family:inherit;}
-  .ai-input:focus{border-color:#2563eb;}
-  .ai-send{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#06b6d4);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .15s;}
+  .typing span:nth-child(2){animation-delay:.18s;}
+  .typing span:nth-child(3){animation-delay:.36s;}
+  .ai-chips{padding:8px 12px;display:flex;flex-wrap:wrap;gap:5px;background:#fff;border-top:1px solid #f1f5f9;}
+  .chip{background:linear-gradient(135deg,#f0f4ff,#e0e7ff);border:1px solid #c7d2fe;color:#3730a3;font-size:11px;padding:5px 11px;border-radius:20px;cursor:pointer;transition:all .15s;font-weight:500;}
+  .chip:hover{background:linear-gradient(135deg,#dbeafe,#c7d2fe);transform:translateY(-1px);}
+  .ai-input-row{display:flex;gap:8px;padding:10px 12px;border-top:1px solid #f1f5f9;background:#fff;align-items:center;}
+  .ai-input{flex:1;border:1.5px solid #e2e8f0;border-radius:22px;padding:9px 16px;font-size:12.5px;outline:none;font-family:inherit;background:#f8faff;transition:border-color .2s;}
+  .ai-input:focus{border-color:#2563eb;background:#fff;}
+  .ai-send{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#06b6d4);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .15s;box-shadow:0 3px 10px rgba(37,99,235,.35);}
   .ai-send:hover{transform:scale(1.1);}
-  .ai-send svg{width:15px;height:15px;fill:#fff;}
+  .ai-send svg{width:16px;height:16px;fill:#fff;}
   @media print{.ai-fab,.ai-panel{display:none !important;}}
 </style>
 
-<button class="ai-fab" onclick="toggleChat()" title="Ask AI about Meseret">
-  <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.38 5.06L2 22l4.94-1.38C8.42 21.5 10.15 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.66 0-3.21-.47-4.53-1.28l-.32-.19-3.34.93.93-3.34-.19-.32C3.47 15.21 3 13.66 3 12c0-4.97 4.03-9 9-9s9 4.03 9 9-4.03 9-9 9z"/></svg>
+<button class="ai-fab" onclick="toggleChat()" title="Chat with Meseret's AI">
+  <span class="ai-fab-icon">🤖</span>
   <span class="notif">AI</span>
 </button>
 
 <div class="ai-panel" id="aiPanel">
   <div class="ai-header">
-    <div class="ai-avatar">🤖</div>
-    <div class="ai-header-text">
-      <div class="ai-name">Meseret's AI Assistant</div>
-      <div class="ai-status">Online — Ask me anything</div>
+    <div class="ai-avatar-wrap">
+      <div class="ai-avatar">🤖</div>
+      <div class="ai-online-dot"></div>
     </div>
-    <button class="ai-close" onclick="toggleChat()">✕</button>
+    <div class="ai-header-info">
+      <div class="ai-name">Meseret's AI Assistant</div>
+      <div class="ai-subtitle">🟢 Online · Ask me anything about Meseret</div>
+    </div>
+    <div class="ai-header-actions">
+      <button class="ai-hbtn" onclick="clearChat()" title="Clear">🗑</button>
+      <button class="ai-hbtn" onclick="toggleChat()" title="Close">✕</button>
+    </div>
   </div>
-  <div class="ai-messages" id="aiMessages">
-    <div class="msg bot">👋 Hi! I'm Meseret's AI assistant. I know everything about his experience, projects, and skills. What would you like to know?</div>
-  </div>
-  <div class="ai-suggestions" id="aiSuggestions">
-    <button class="sug-btn" onclick="askSuggestion(this)">🏦 Core Banking projects</button>
-    <button class="sug-btn" onclick="askSuggestion(this)">🛠️ Tech skills</button>
-    <button class="sug-btn" onclick="askSuggestion(this)">📋 Certifications</button>
-    <button class="sug-btn" onclick="askSuggestion(this)">💼 Work experience</button>
-    <button class="sug-btn" onclick="askSuggestion(this)">📞 Contact info</button>
+  <div class="ai-messages" id="aiMessages"></div>
+  <div class="ai-chips" id="aiChips">
+    <span class="chip" onclick="ask('Who is Meseret?')">👤 Who is Meseret?</span>
+    <span class="chip" onclick="ask('What projects has he done?')">🚀 Projects</span>
+    <span class="chip" onclick="ask('What are his skills?')">🛠️ Skills</span>
+    <span class="chip" onclick="ask('What certifications does he have?')">🏅 Certifications</span>
+    <span class="chip" onclick="ask('What is his work experience?')">💼 Experience</span>
+    <span class="chip" onclick="ask('How can I contact Meseret?')">📞 Contact</span>
+    <span class="chip" onclick="ask('Is he available for hire?')">✅ Hire him</span>
+    <span class="chip" onclick="ask('What is his education?')">🎓 Education</span>
+    <span class="chip" onclick="ask('What remittance projects has he done?')">💸 Remittance</span>
+    <span class="chip" onclick="ask('Tell me about his DevOps skills')">🔧 DevOps</span>
   </div>
   <div class="ai-input-row">
-    <input class="ai-input" id="aiInput" placeholder="Ask about skills, projects, experience..." onkeydown="if(event.key==='Enter')sendMsg()"/>
+    <input class="ai-input" id="aiInput" placeholder="Ask anything about Meseret..." onkeydown="if(event.key==='Enter')sendMsg()"/>
     <button class="ai-send" onclick="sendMsg()">
       <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
     </button>
@@ -796,106 +818,122 @@
 </div>
 
 <script>
-const CV_KNOWLEDGE = {
-  name: "Meseret Akalu Belayneh",
-  title: "Principal Software QA Engineer, Project Manager & Software Developer",
-  location: "Addis Ababa, Ethiopia",
-  email: "meseretinsa@gmail.com",
-  phone: "+251 912 465 247",
-  github: "github.com/meseretak",
-  linkedin: "linkedin.com/in/meseret-akalu-76363121b",
-  experience: "10+ years",
-  employer: "Currently working at Awash Bank S.C. as Principal Software QA Engineer since January 2024",
-  education: "BSc Computer Science, Mizan Tepi University, Ethiopia, GPA 3.21 (2010-2014)",
-  skills: "Selenium, Cypress, Katalon Studio, JMeter, Postman, Jenkins, GitLab CI, Docker, Kubernetes, Ansible, Nagios, SonarQube, Jira, TestLink, Mantis, Trello, ManageEngine, Java, PHP, JavaScript, Python, TypeScript, Bash, Agile, Scrum",
-  certifications: "DevOps Certification (2021), Agile with Atlassian Jira (2022), Software Testing Expert - IBM (2023), COBIT Foundation (2023), ITIL 4 Foundation (2023), Scrum Master (2023), Testing Recognition - INSA (2023)",
-  projects: "60+ enterprise projects including: Core Banking (Islamic Profit Distribution, Loan Processing System, SACCO Corporate Business Solution, Customer Risk Grading, VAT Implementation, ATM Card Charge Collection), Payment Integration (ECX Payment, Addis Pay C2B, EEU Mobile, Fuel Payment Aggregator, Kefiya, NBE Unite.et, IPS-R2P, FenanPay), Remittance (Awash Remit Mastercard, Mojo Money Transfer, Fast Pay, LakiPay, EZ-Remit, Swiss-Remit, Ethio-Dash), Digital Banking (POS TMS, Awash Birr Pro, E-Ticketing, Loyalty Solution, Forex System), ERP (Budget Control, Payroll, Fleet Management, Leave Management, Building Rental), Infrastructure (Tier III Data Center, DARS System, E-Learning Portal)",
-  languages: "English (Professional), Amharic (Native), Oromo (Conversational)"
+const ME = {
+  name:"Meseret Akalu Belayneh",
+  title:"Principal Software QA Engineer · Project Manager · Software Developer",
+  location:"Addis Ababa, Ethiopia 🇪🇹",
+  email:"meseretinsa@gmail.com", phone:"+251 912 465 247",
+  github:"github.com/meseretak", linkedin:"linkedin.com/in/meseret-akalu-76363121b",
+  upwork:"upwork.com/freelancers/~011d6bf29d008be2ca",
+  years:"10+", projectCount:"60+",
+  current:"Principal Software QA Engineer at Awash Bank S.C. (Jan 2024 – Present)",
+  history:["Project Manager · Awash Bank S.C. (May 2021 – Jan 2024)","Senior Project QA Officer · Awash Bank S.C. (Oct 2019 – Oct 2021)","Senior QA Tester & Supervisor · INSA (Feb 2016 – Dec 2019)","Software Developer · INSA (Apr 2015 – Apr 2016)"],
+  edu:"BSc Computer Science · Mizan Tepi University · GPA 3.21 · 2010–2014",
+  certs:["🚀 DevOps Certification – Int'l DevOps Cert. Academy (2021)","📋 Agile with Atlassian Jira – Atlassian (2022)","🧪 Software Testing Expert – IBM (2023)","📊 COBIT Foundation – ISACA (2023)","⚙️ ITIL 4 Foundation (2023)","🏃 Scrum Master (2023)","🏅 Testing Recognition – INSA (2023)"],
+  skills:{testing:["Selenium","Cypress","Katalon Studio","JMeter","Postman","Manual Testing","API Testing","Performance Testing","Security Testing"],devops:["Jenkins","GitLab CI","Docker","Kubernetes","Ansible","Nagios","CI/CD Pipelines"],mgmt:["Jira","TestLink","Mantis","Trello","ManageEngine","Agile","Scrum"],quality:["SonarQube","Unit Testing","Code Review","Git"],dev:["Java","PHP","JavaScript","Python","TypeScript","Bash"]},
+  projects:{"🏦 Core Banking":["Islamic Profit Distribution (IPD)","Suspense Account Management","FBE Customization (National ID & Late Payment)","VAT Implementation","Automatic ATM Card Charge Collection","Minimum Balance Management","IFB Saving Migration","Chequepoint Enhancement","Customer Profile Management","SACCO Corporate Business Solution Phase II","Loan Processing System","Customer Risk Grading"],"🔗 Payment & Integration":["Awash Bank – SNV Integration","ECX Payment Integration","Addis Pay C2B Merchant Debit API","EEU Mobile & Prepaid Payment","Auction Ethiopia","2Mercato.com / e-Biz","Addis Ababa Water Integration","Sheger City Water & Sewerage","Fuel Payment Aggregator","Kefiya Financial Technology","NBE Unite.et Platform","IPS-R2P Project","FenanPay & Medaf Delivery","Star Pay Financial Solution"],"💸 Remittance":["Awash Remit – Mastercard","Mojo Money Transfer","Fast Pay Remittance","LakiPay Remittance","EZ-Remit","Swiss-Remit","Ethio-Dash Remittance","Amhara Housing Corporation","Cash-out Enhancement & Cash-in"],"📱 Awash Birr Pro & Digital Banking":["Loan Enquiry on Awash Birr Pro","POS & TMS (Tracom)","E-Ticketing on ABP","Loyalty Solution on ABP","Forex Requisition & Approval","Daily Exchange Rate","Online Transaction Audit"],"🏢 ERP & Enterprise":["Budget Control System","Material Management","Payroll Management","Leave Management System","Manpower Assignment","Fleet Management","Building Rental Management","Change Management Automation","AFR FMS Enhancement","VMS Enhancement"],"⚙️ Infrastructure & In-house":["Tier III Data Center","DARS System (In-house)","E-Learning Portal for MSMEs","Zubak AA Traffic Management","SD Access Resource","Digital EQUB – Chipchip","EthioTelecom Microloan & Land Asura Payment"]},
+  langs:"English (Professional) · Amharic (Native) · Oromo (Conversational)"
 };
 
-const RESPONSES = {
-  greeting: ["hello","hi","hey","good morning","good afternoon"],
-  contact: ["contact","email","phone","reach","call","linkedin","github"],
-  skills: ["skill","tool","technology","tech","stack","use","know","selenium","cypress","docker","jenkins","kubernetes","jira","python","java"],
-  experience: ["experience","work","job","career","history","employer","awash","insa","bank","year"],
-  projects: ["project","deliver","built","banking","integration","remittance","erp","payment","core"],
-  certifications: ["cert","certification","certified","devops","itil","cobit","scrum","ibm","agile"],
-  education: ["education","degree","university","study","gpa","mizan","computer science"],
-  languages: ["language","speak","amharic","english","oromo"],
-  availability: ["available","hire","freelance","open","opportunity","work with"],
+const INTENTS=[
+  {k:["hello","hi","hey","morning","afternoon","evening","greet","howdy"],r:"greet"},
+  {k:["who","about","introduce","summary","overview","profile","tell me about"],r:"about"},
+  {k:["contact","email","phone","reach","call","message","connect"],r:"contact"},
+  {k:["linkedin","github","upwork","twitter","social","profile link","x.com"],r:"social"},
+  {k:["skill","tool","technology","tech stack","selenium","cypress","docker","jenkins","kubernetes","jira","python","java","devops","automation"],r:"skills"},
+  {k:["testing","qa","quality","manual test","automation test","performance test","security test","api test"],r:"testing"},
+  {k:["devops","ci/cd","pipeline","docker","kubernetes","ansible","jenkins","gitlab","infrastructure as code"],r:"devops"},
+  {k:["all project","how many project","total project","project count","number of project"],r:"projectcount"},
+  {k:["core banking","bank customiz","loan process","atm","vat","suspense","sacco","profit distribut","chequepoint","minimum balance"],r:"corebanking"},
+  {k:["remittance","money transfer","mastercard","lakipay","ez-remit","swiss","ethio-dash","mojo","fast pay"],r:"remittance"},
+  {k:["payment","integration","ecx","addis pay","eeu","auction","mercato","water integr","fuel payment","kefiya","nbe","ips-r2p","fenanpay","star pay"],r:"payment"},
+  {k:["awash birr","digital banking","pos","tms","e-ticket","loyalty","forex","exchange rate","transaction audit"],r:"digital"},
+  {k:["erp","enterprise","payroll","fleet","leave","manpower","budget control","material","building rental","change management"],r:"erp"},
+  {k:["infrastructure","data center","tier iii","dars","e-learning","traffic","inhouse","in-house","equb","ethiotelecom"],r:"infra"},
+  {k:["project","deliver","built","work on"],r:"projects"},
+  {k:["experience","work history","career","job","employer","awash bank","insa","year","role","position"],r:"experience"},
+  {k:["current","now","today","present","working","currently"],r:"current"},
+  {k:["cert","certification","certified","itil","cobit","scrum","ibm","agile cert"],r:"certs"},
+  {k:["education","degree","university","study","gpa","mizan","computer science","bsc","bachelor"],r:"edu"},
+  {k:["language","speak","amharic","english","oromo","fluent"],r:"langs"},
+  {k:["hire","available","freelance","open to","opportunity","work with","recruit","remote","job offer"],r:"hire"},
+  {k:["hobby","interest","fun","free time","passion","outside work"],r:"hobbies"},
+  {k:["award","recognition","achievement","accomplishment"],r:"awards"},
+  {k:["salary","rate","cost","charge","fee","price","compensation"],r:"salary"},
+  {k:["location","where","country","city","based","ethiopia","addis ababa"],r:"location"},
+  {k:["thank","thanks","appreciate","great","awesome","nice","good","perfect","excellent","wonderful"],r:"thanks"},
+  {k:["bye","goodbye","see you","later","ciao","farewell"],r:"bye"},
+];
+
+const A={
+  greet(){const h=new Date().getHours();const g=h<12?"Good morning ☀️":h<17?"Good afternoon 🌤️":"Good evening 🌙";return `${g}! I'm Meseret's AI assistant.\n\nI can tell you everything about **${ME.name}** — his 60+ projects, skills, certifications, and more.\n\nWhat would you like to know? 😊`;},
+  about(){return `👤 **${ME.name}**\n\n${ME.title}\n\n📍 ${ME.location}\n⏱️ ${ME.years} years of experience\n🚀 ${ME.projectCount}+ enterprise projects\n🏦 Currently at Awash Bank S.C.\n\nPhilosophy: *"Quality is not an act, but a habit."*`;},
+  contact(){return `📬 **Contact Meseret:**\n\n📧 ${ME.email}\n📞 ${ME.phone}\n📍 ${ME.location}\n\nHe's open to international opportunities!`;},
+  social(){return `🔗 **Meseret's Profiles:**\n\n💼 LinkedIn: ${ME.linkedin}\n💻 GitHub: ${ME.github}\n🟢 Upwork: ${ME.upwork}\n🐦 Twitter/X: x.com/meseretak\n▶️ YouTube: youtube.com/@coctube`;},
+  skills(){return `🛠️ **Full Tech Stack:**\n\n🧪 Testing: ${ME.skills.testing.join(", ")}\n\n🔧 DevOps: ${ME.skills.devops.join(", ")}\n\n📋 Management: ${ME.skills.mgmt.join(", ")}\n\n🛡️ Quality: ${ME.skills.quality.join(", ")}\n\n💻 Dev: ${ME.skills.dev.join(", ")}`;},
+  testing(){return `🧪 **Testing Expertise:**\n\n${ME.skills.testing.map(s=>`• ${s}`).join("\n")}\n\nCovers functional, regression, UAT, exploratory, performance, security, and API testing.`;},
+  devops(){return `🚀 **DevOps & CI/CD:**\n\n${ME.skills.devops.map(s=>`• ${s}`).join("\n")}\n\nBuilds CI/CD pipelines, manages containers, and automates infrastructure for banking-grade systems.`;},
+  projects(){return `🚀 **${ME.projectCount}+ Projects in 6 categories:**\n\n${Object.entries(ME.projects).map(([k,v])=>`${k} — ${v.length} projects`).join("\n")}\n\nAsk about any category for the full list!`;},
+  projectcount(){const t=Object.values(ME.projects).reduce((a,v)=>a+v.length,0);return `📊 **${t}+ Projects Delivered:**\n\n${Object.entries(ME.projects).map(([k,v])=>`${k}: ${v.length}`).join("\n")}`;},
+  corebanking(){const p=ME.projects["🏦 Core Banking"];return `🏦 **Core Banking (${p.length} projects):**\n\n${p.map(x=>`• ${x}`).join("\n")}`;},
+  remittance(){const p=ME.projects["💸 Remittance"];return `💸 **Remittance & Money Transfer (${p.length} projects):**\n\n${p.map(x=>`• ${x}`).join("\n")}`;},
+  payment(){const p=ME.projects["🔗 Payment & Integration"];return `🔗 **Payment & Integration (${p.length} projects):**\n\n${p.map(x=>`• ${x}`).join("\n")}`;},
+  digital(){const p=ME.projects["📱 Awash Birr Pro & Digital Banking"];return `📱 **Awash Birr Pro & Digital Banking (${p.length} projects):**\n\n${p.map(x=>`• ${x}`).join("\n")}`;},
+  erp(){const p=ME.projects["🏢 ERP & Enterprise"];return `🏢 **ERP & Enterprise (${p.length} projects):**\n\n${p.map(x=>`• ${x}`).join("\n")}`;},
+  infra(){const p=ME.projects["⚙️ Infrastructure & In-house"];return `⚙️ **Infrastructure & In-house (${p.length} projects):**\n\n${p.map(x=>`• ${x}`).join("\n")}`;},
+  experience(){return `💼 **Work History:**\n\n🔵 ${ME.current}\n\n${ME.history.map(h=>`⚪ ${h}`).join("\n")}\n\nTotal: ${ME.years} years of progressive experience.`;},
+  current(){return `🟢 **Currently:** ${ME.current}\n\nLeads QA strategy, builds automation frameworks, and manages quality governance across all digital banking projects at Awash Bank.`;},
+  certs(){return `🏅 **7 Professional Certifications:**\n\n${ME.certs.join("\n")}`;},
+  edu(){return `🎓 **Education:**\n\n${ME.edu}\n\nGraduated with a strong GPA in Computer Science from Mizan Tepi University, Ethiopia.`;},
+  langs(){return `🌍 **Languages:**\n\n${ME.langs}`;},
+  hire(){return `✅ **Open to Opportunities!**\n\nAvailable for:\n• International remote roles\n• Freelance QA & DevOps projects\n• Consulting engagements\n\n📧 ${ME.email}\n🟢 ${ME.upwork}\n💼 ${ME.linkedin}`;},
+  hobbies(){return `😄 **Outside of work:**\n\n📚 Reading\n💻 Writing Code\n🎮 Gaming\n\nPassionate about continuous learning and staying current with QA and DevOps trends.`;},
+  awards(){return `🏆 **Recognition & Achievements:**\n\n🏅 Testing Recognition Award – INSA (2023)\n🎯 Delivered 60+ enterprise banking projects\n📈 Led QA transformation at Awash Bank\n🌟 25+ GitHub repositories`;},
+  salary(){return `💬 For compensation details, please reach out directly:\n\n📧 ${ME.email}\n🟢 Upwork: ${ME.upwork}\n\nOpen to discussing rates based on project scope.`;},
+  location(){return `📍 **Location:** ${ME.location}\n\nOpen to remote work and international opportunities worldwide.`;},
+  thanks(){const r=["You're welcome! 😊 Anything else?","Happy to help! 🙌","Glad I could assist! Ask me anything else about Meseret.","Anytime! 😄"];return r[Math.floor(Math.random()*r.length)];},
+  bye(){return `👋 Goodbye! Thanks for visiting Meseret's CV.\n\n📧 ${ME.email}\n\nFeel free to come back anytime!`;},
+  fallback(q){return `🤔 I'm not sure about "${q}", but I can help with:\n\n• 👤 Who Meseret is\n• 💼 Work experience & current role\n• 🚀 60+ projects by category\n• 🛠️ Skills & tech stack\n• 🏅 Certifications\n• 📞 Contact details\n• ✅ Availability for hire\n\nJust ask! 😊`;}
 };
 
-function getResponse(q) {
-  const ql = q.toLowerCase();
-  if (RESPONSES.greeting.some(w => ql.includes(w)))
-    return `👋 Hello! I'm Meseret's AI assistant. Meseret Akalu Belayneh is a Principal QA Engineer & Project Manager with ${CV_KNOWLEDGE.experience} of experience at Awash Bank. What would you like to know?`;
-  if (RESPONSES.contact.some(w => ql.includes(w)))
-    return `📬 You can reach Meseret at:\n📧 ${CV_KNOWLEDGE.email}\n📞 ${CV_KNOWLEDGE.phone}\n🔗 ${CV_KNOWLEDGE.linkedin}\n💻 ${CV_KNOWLEDGE.github}`;
-  if (RESPONSES.certifications.some(w => ql.includes(w)))
-    return `🏅 Meseret holds 7 certifications:\n${CV_KNOWLEDGE.certifications}`;
-  if (RESPONSES.education.some(w => ql.includes(w)))
-    return `🎓 ${CV_KNOWLEDGE.education}`;
-  if (RESPONSES.languages.some(w => ql.includes(w)))
-    return `🌍 Languages: ${CV_KNOWLEDGE.languages}`;
-  if (RESPONSES.skills.some(w => ql.includes(w)))
-    return `🛠️ Meseret's tech stack includes:\n${CV_KNOWLEDGE.skills}`;
-  if (RESPONSES.projects.some(w => ql.includes(w)))
-    return `🚀 Meseret has delivered ${CV_KNOWLEDGE.projects}`;
-  if (RESPONSES.experience.some(w => ql.includes(w)))
-    return `💼 ${CV_KNOWLEDGE.employer}.\n\nPreviously: Senior QA Tester & Supervisor at INSA (2016-2019), Software Developer at INSA (2015-2016).\n\nTotal: ${CV_KNOWLEDGE.experience} of experience.`;
-  if (RESPONSES.availability.some(w => ql.includes(w)))
-    return `✅ Meseret is open to international opportunities and freelance projects. Contact him at ${CV_KNOWLEDGE.email} or via LinkedIn.`;
-  return `🤔 Great question! Meseret Akalu is a ${CV_KNOWLEDGE.title} based in ${CV_KNOWLEDGE.location} with ${CV_KNOWLEDGE.experience} experience. You can ask me about his skills, projects, certifications, education, or contact details.`;
+function getResp(q){
+  const ql=q.toLowerCase();
+  for(const i of INTENTS){if(i.k.some(k=>ql.includes(k)))return A[i.r](q);}
+  return A.fallback(q);
 }
-
-function toggleChat() {
-  const p = document.getElementById('aiPanel');
-  p.classList.toggle('open');
-  if (p.classList.contains('open')) document.getElementById('aiInput').focus();
+function ts(){return new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});}
+function addMsg(text,type){
+  const box=document.getElementById('aiMessages');
+  const row=document.createElement('div');
+  row.className=`msg-row ${type}`;
+  const safe=text.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/\*(.*?)\*/g,'<em>$1</em>');
+  if(type==='bot'){row.innerHTML=`<div class="msg-bot-av">🤖</div><div><div class="msg bot">${safe}</div><div class="msg-time bt">${ts()}</div></div>`;}
+  else{row.innerHTML=`<div><div class="msg user">${text}</div><div class="msg-time" style="text-align:right">${ts()}</div></div>`;}
+  box.appendChild(row);box.scrollTop=box.scrollHeight;
 }
-
-function addMsg(text, type) {
-  const box = document.getElementById('aiMessages');
-  const d = document.createElement('div');
-  d.className = `msg ${type}`;
-  d.style.whiteSpace = 'pre-line';
-  d.textContent = text;
-  box.appendChild(d);
-  box.scrollTop = box.scrollHeight;
+function showTyping(){
+  const box=document.getElementById('aiMessages');
+  const row=document.createElement('div');
+  row.className='typing-row';row.id='typingRow';
+  row.innerHTML=`<div class="msg-bot-av">🤖</div><div class="typing"><span></span><span></span><span></span></div>`;
+  box.appendChild(row);box.scrollTop=box.scrollHeight;
 }
-
-function showTyping() {
-  const box = document.getElementById('aiMessages');
-  const t = document.createElement('div');
-  t.className = 'typing'; t.id = 'typing';
-  t.innerHTML = '<span></span><span></span><span></span>';
-  box.appendChild(t);
-  box.scrollTop = box.scrollHeight;
-}
-
-function removeTyping() {
-  const t = document.getElementById('typing');
-  if (t) t.remove();
-}
-
-function sendMsg() {
-  const inp = document.getElementById('aiInput');
-  const q = inp.value.trim();
-  if (!q) return;
-  addMsg(q, 'user');
-  inp.value = '';
-  document.getElementById('aiSuggestions').style.display = 'none';
+function removeTyping(){const t=document.getElementById('typingRow');if(t)t.remove();}
+function sendMsg(){
+  const inp=document.getElementById('aiInput');
+  const q=inp.value.trim();if(!q)return;
+  addMsg(q,'user');inp.value='';
+  document.getElementById('aiChips').style.display='none';
   showTyping();
-  setTimeout(() => {
-    removeTyping();
-    addMsg(getResponse(q), 'bot');
-  }, 700 + Math.random() * 400);
+  setTimeout(()=>{removeTyping();addMsg(getResp(q),'bot');},500+Math.random()*600);
 }
-
-function askSuggestion(btn) {
-  document.getElementById('aiInput').value = btn.textContent.replace(/^[^\w]+/,'');
-  sendMsg();
+function ask(q){document.getElementById('aiInput').value=q;sendMsg();}
+function toggleChat(){
+  const p=document.getElementById('aiPanel');
+  const open=p.classList.toggle('open');
+  if(open){if(!document.getElementById('aiMessages').children.length){setTimeout(()=>addMsg(A.greet(),'bot'),300);}document.getElementById('aiInput').focus();}
 }
+function clearChat(){document.getElementById('aiMessages').innerHTML='';document.getElementById('aiChips').style.display='flex';setTimeout(()=>addMsg(A.greet(),'bot'),200);}
 </script>
 </body>
 </html>
