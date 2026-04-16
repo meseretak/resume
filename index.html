@@ -30,6 +30,7 @@
     .typed{font-size:14px;opacity:.85;display:inline-block;overflow:hidden;white-space:nowrap;border-right:2px solid rgba(255,255,255,.7);animation:typing 3.5s steps(60,end) .5s both,blink .75s step-end infinite;}
     .hero-badges{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px;}
     .badge{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:11px;padding:3px 11px;border-radius:20px;}
+    .badge-live{background:rgba(16,185,129,.25);border-color:rgba(16,185,129,.6);animation:pulse 2.5s infinite;}
     .hero-contacts{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:16px;font-size:12px;opacity:.9;}
     .hero-contacts a{color:#fff;display:flex;align-items:center;gap:4px;}
     /* STATS */
@@ -88,7 +89,7 @@
     .edu-gpa .gpa-lbl{font-size:10px;opacity:.85;text-transform:uppercase;letter-spacing:1px;}
     /* PROJECT GROUPS - compact summary cards */
     .proj-groups{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start;}
-    .proj-group{border-radius:12px;border:1px solid var(--border);overflow:hidden;transition:box-shadow .2s,transform .15s;}
+    .proj-group{border-radius:12px;border:1px solid var(--border);overflow:hidden;transition:box-shadow .2s,transform .15s;break-inside:avoid;}
     .proj-group:hover{box-shadow:0 6px 24px rgba(37,99,235,.12);transform:translateY(-2px);}
     .pg-head{display:flex;align-items:center;justify-content:space-between;padding:11px 15px;}
     .pg-head-left{display:flex;align-items:center;gap:8px;}
@@ -131,11 +132,12 @@
     .btn-pdf:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(37,99,235,.5);}
     /* SOCIAL SIDEBAR */
     @keyframes slideInRight{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
-    .social-sidebar{position:fixed;right:0;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:0;z-index:999;border-radius:12px 0 0 12px;overflow:hidden;box-shadow:-4px 0 20px rgba(0,0,0,.15);}
-    .soc-btn{width:44px;height:44px;display:flex;align-items:center;justify-content:center;transition:width .25s ease,transform .2s;overflow:hidden;position:relative;}
-    .soc-btn svg{width:20px;height:20px;flex-shrink:0;transition:transform .2s;}
-    .soc-btn:hover{width:54px;transform:scale(1.08);}
-    .soc-btn:hover svg{transform:scale(1.15);}
+    @keyframes popOut{0%{transform:scale(1)}50%{transform:scale(1.25)}100%{transform:scale(1.15)}}
+    .social-sidebar{position:fixed;right:0;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:2px;z-index:999;border-radius:10px 0 0 10px;overflow:hidden;box-shadow:-3px 0 16px rgba(0,0,0,.18);}
+    .soc-btn{width:34px;height:34px;display:flex;align-items:center;justify-content:center;transition:width .2s ease,transform .2s ease,box-shadow .2s;overflow:hidden;position:relative;}
+    .soc-btn svg{width:15px;height:15px;flex-shrink:0;transition:transform .2s;}
+    .soc-btn:hover{width:42px;transform:scale(1.18);box-shadow:-4px 0 14px rgba(0,0,0,.3);z-index:1;animation:popOut .25s ease forwards;}
+    .soc-btn:hover svg{transform:scale(1.1);}
     .soc-btn.linkedin{background:#0A66C2;color:#fff;animation:slideInRight .4s ease .1s both;}
     .soc-btn.github{background:#24292e;color:#fff;animation:slideInRight .4s ease .2s both;}
     .soc-btn.twitter{background:#000;color:#fff;animation:slideInRight .4s ease .3s both;}
@@ -151,6 +153,34 @@
       .hero,.pg-head{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
       .section{margin-bottom:18px !important;}
       a{color:inherit !important;text-decoration:none !important;}
+      /* prevent mid-card breaks */
+      .proj-group,
+      .proj-group .pg-body,
+      .exp-item,
+      .edu-card,
+      .cert-item,
+      .section{
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+      /* keep header glued to its body */
+      .pg-head{
+        page-break-after: avoid !important;
+        break-after: avoid !important;
+      }
+      /* start projects section on a new page so groups aren't orphaned */
+      .section:last-of-type{
+        page-break-before: auto !important;
+      }
+      .proj-groups{
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+      /* sidebar stays put */
+      .sidebar{
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
     }
     @media(max-width:720px){.body{grid-template-columns:1fr;}.hero-inner{flex-direction:column;}.hero,.main,.sidebar,.footer{padding:20px 16px;}.proj-groups,.footer-main{grid-template-columns:1fr;flex-direction:column;}.stats-bar{flex-wrap:wrap;gap:8px;padding:12px 16px;}.social-sidebar{display:none;}}
   </style>
@@ -169,6 +199,7 @@
         <h1>Meseret Akalu Belayneh</h1>
         <div class="typed-wrap"><span class="typed">Principal QA Engineer · Project Manager · Software Developer</span></div>
         <div class="hero-badges">
+          <span class="badge badge-live">🟢 Currently @ Awash Bank S.C.</span>
           <span class="badge">🇪🇹 Addis Ababa, Ethiopia</span>
           <span class="badge">🏦 Banking &amp; Fintech</span>
           <span class="badge">10+ Years Experience</span>
@@ -518,21 +549,22 @@
   });
 
   function downloadPDF() {
-    // Use browser's built-in Save as PDF via print dialog
     const style = document.createElement('style');
     style.id = 'pdf-override';
     style.textContent = `
       @media print {
-        .expertise-strip, .tools-strip, .footer, .print-actions, .stats-bar { display: none !important; }
-        body { background: #fff !important; }
-        .page { box-shadow: none !important; margin: 0 !important; border-radius: 0 !important; max-width: 100% !important; }
-        .body { grid-template-columns: 220px 1fr !important; }
-        .proj-groups { grid-template-columns: 1fr 1fr !important; }
-        .hero, .pg-head { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        .footer,.print-actions,.social-sidebar,.stats-bar{display:none !important;}
+        body{background:#fff !important;}
+        .page{box-shadow:none !important;margin:0 !important;border-radius:0 !important;max-width:100% !important;}
+        .body{grid-template-columns:220px 1fr !important;}
+        .proj-groups{grid-template-columns:1fr 1fr !important;}
+        .hero,.pg-head{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+        .proj-group,.exp-item,.edu-card,.cert-item,.section{page-break-inside:avoid !important;break-inside:avoid !important;}
+        .pg-head{page-break-after:avoid !important;break-after:avoid !important;}
+        a{color:inherit !important;text-decoration:none !important;}
       }
     `;
     document.head.appendChild(style);
-    // Set document title so the saved PDF filename is meaningful
     const prev = document.title;
     document.title = 'Meseret_Akalu_CV';
     window.print();
