@@ -237,30 +237,16 @@
       body{background:#fff !important;}
       .page{box-shadow:none !important;margin:0 !important;border-radius:0 !important;max-width:100% !important;}
       .footer,.print-actions,.social-sidebar,.stats-bar{display:none !important;}
-      .body{grid-template-columns:220px 1fr !important;}
+      .body{display:block !important;}
+      .sidebar{display:grid !important;grid-template-columns:1fr 1fr 1fr !important;gap:6px !important;padding:8px 16px !important;border-right:none !important;border-bottom:2px solid #e2e8f0 !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+      .quote-box{display:none !important;}
+      .main{padding:10px 16px !important;}
+      .hero{padding:14px 20px !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+      .hero-inner{gap:14px !important;}
+      .photo-ring{width:70px !important;height:70px !important;transform:none !important;border:1px solid rgba(255,255,255,.3) !important;}
+      .photo-ring img{width:62px !important;height:62px !important;transform:none !important;object-fit:cover !important;object-position:center top !important;}
       .proj-groups{grid-template-columns:1fr 1fr !important;}
-      .hero,.pg-head{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
-      .section{margin-bottom:18px !important;}
-      a{color:inherit !important;text-decoration:none !important;}
-      /* freeze all animations so photo renders correctly */
-      *{animation:none !important;transition:none !important;}
-      /* fix photo position in print */
-      .photo-ring{
-        animation:none !important;
-        transform:none !important;
-        border:2px solid rgba(255,255,255,.3) !important;
-      }
-      .photo-ring img{
-        animation:none !important;
-        transform:none !important;
-        display:block !important;
-        width:100px !important;
-        height:100px !important;
-        border-radius:50% !important;
-        object-fit:cover !important;
-        object-position:center top !important;
-        border:3px solid rgba(255,255,255,.4) !important;
-      }
+      .pg-head{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
       /* prevent mid-card breaks */
       .proj-group,
       .proj-group .pg-body,
