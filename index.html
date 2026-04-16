@@ -234,41 +234,61 @@
     .soc-btn.youtube{background:#FF0000;color:#fff;animation:slideInRight .4s ease .5s both;}
     /* PRINT */
     @media print{
-      body{background:#fff !important;}
-      .page{box-shadow:none !important;margin:0 !important;border-radius:0 !important;max-width:100% !important;}
-      .footer,.print-actions,.social-sidebar,.stats-bar{display:none !important;}
+      @page{margin:12mm 10mm;}
+      *{animation:none !important;transition:none !important;box-shadow:none !important;}
+      body{background:#fff !important;font-size:11.5px !important;}
+      .page{margin:0 !important;border-radius:0 !important;max-width:100% !important;}
+
+      /* hide non-essential elements */
+      .footer,.print-actions,.social-sidebar,.stats-bar,
+      .code-block,.quote-box,.ai-fab,.ai-panel{display:none !important;}
+
+      /* hide sidebar completely — skills shown at bottom instead */
+      .sidebar{display:none !important;}
+
+      /* body becomes single column */
       .body{display:block !important;}
-      .sidebar{display:grid !important;grid-template-columns:1fr 1fr 1fr !important;gap:6px !important;padding:8px 16px !important;border-right:none !important;border-bottom:2px solid #e2e8f0 !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
-      .quote-box{display:none !important;}
-      .main{padding:10px 16px !important;}
-      .hero{padding:14px 20px !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
-      .hero-inner{gap:14px !important;}
-      .photo-ring{width:70px !important;height:70px !important;transform:none !important;border:1px solid rgba(255,255,255,.3) !important;}
-      .photo-ring img{width:62px !important;height:62px !important;transform:none !important;object-fit:cover !important;object-position:center top !important;}
-      .proj-groups{grid-template-columns:1fr 1fr !important;}
+      .main{padding:0 !important;width:100% !important;}
+
+      /* hero compact */
+      .hero{padding:14px 18px !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+      .hero-inner{gap:14px !important;align-items:center !important;}
+      .photo-ring{width:72px !important;height:72px !important;transform:none !important;border:1px solid rgba(255,255,255,.3) !important;}
+      .photo-ring img{width:64px !important;height:64px !important;transform:none !important;object-fit:cover !important;object-position:center top !important;}
+      .hero-text h1{font-size:20px !important;}
+      .typed-wrap{display:none !important;}
+      .hero-badges{gap:5px !important;margin-top:8px !important;}
+      .badge{font-size:10px !important;padding:2px 8px !important;}
+      .hero-contacts{margin-top:8px !important;gap:4px 14px !important;font-size:11px !important;}
+
+      /* sections */
+      .section{margin-bottom:14px !important;}
+      .section-title{margin-bottom:8px !important;font-size:10px !important;}
+      .profile-text{font-size:11.5px !important;line-height:1.6 !important;}
+
+      /* experience */
+      .exp-item{margin-bottom:12px !important;padding-left:12px !important;}
+      .exp-role{font-size:13px !important;}
+      .exp-company{font-size:11px !important;}
+      .exp-bullets li{font-size:11px !important;margin-bottom:2px !important;}
+
+      /* education */
+      .edu-card{padding:12px 16px !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+      .edu-gpa{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+
+      /* projects grid */
+      .proj-groups{grid-template-columns:1fr 1fr !important;gap:8px !important;}
       .pg-head{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
-      /* prevent mid-card breaks */
-      .proj-group,
-      .proj-group .pg-body,
-      .exp-item,
-      .edu-card,
-      .cert-item,
-      .section{
-        page-break-inside: avoid !important;
-        break-inside: avoid !important;
-      }
-      .pg-head{
-        page-break-after: avoid !important;
-        break-after: avoid !important;
-      }
-      .proj-groups{
-        page-break-inside: avoid !important;
-        break-inside: avoid !important;
-      }
-      .sidebar{
-        page-break-inside: avoid !important;
-        break-inside: avoid !important;
-      }
+      .pg-list li{font-size:10.5px !important;padding:2px 0 !important;}
+      .pg-body{padding:8px 10px !important;}
+
+      /* skills summary appended at bottom via print-skills div */
+      .print-skills{display:block !important;}
+
+      /* page break rules */
+      .proj-group,.exp-item,.edu-card,.section{page-break-inside:avoid !important;break-inside:avoid !important;}
+      .pg-head{page-break-after:avoid !important;break-after:avoid !important;}
+      a{color:inherit !important;text-decoration:none !important;}
     }
     @media(max-width:720px){.body{grid-template-columns:1fr;}.hero-inner{flex-direction:column;}.hero,.main,.sidebar,.footer{padding:20px 16px;}.proj-groups,.footer-main{grid-template-columns:1fr;flex-direction:column;}.stats-bar{flex-wrap:wrap;gap:8px;padding:12px 16px;}.social-sidebar{display:none;}}
   </style>
@@ -590,6 +610,33 @@
             </div>
           </div>
 
+        </div>
+      </div>
+
+      <!-- PRINT-ONLY skills summary -->
+      <div class="print-skills" style="display:none;margin-top:16px;border-top:2px solid #e2e8f0;padding-top:12px;">
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#2563eb;margin-bottom:8px;">Skills &amp; Tools</div>
+        <div style="display:flex;flex-wrap:wrap;gap:5px;">
+          <span style="background:#dbeafe;color:#1e40af;font-size:10px;padding:2px 8px;border-radius:10px;-webkit-print-color-adjust:exact;print-color-adjust:exact;">Selenium</span>
+          <span style="background:#dbeafe;color:#1e40af;font-size:10px;padding:2px 8px;border-radius:10px;-webkit-print-color-adjust:exact;print-color-adjust:exact;">Cypress</span>
+          <span style="background:#dbeafe;color:#1e40af;font-size:10px;padding:2px 8px;border-radius:10px;-webkit-print-color-adjust:exact;print-color-adjust:exact;">Katalon Studio</span>
+          <span style="background:#dbeafe;color:#1e40af;font-size:10px;padding:2px 8px;border-radius:10px;-webkit-print-color-adjust:exact;print-color-adjust:exact;">JMeter</span>
+          <span style="background:#dbeafe;color:#1e40af;font-size:10px;padding:2px 8px;border-radius:10px;-webkit-print-color-adjust:exact;print-color-adjust:exact;">Postman</span>
+          <span style="background:#d1fae5;color:#065f46;font-size:10px;padding:2px 8px;border-radius:10px;-webkit-print-color-adjust:exact;print-color-adjust:exact;">Jenkins</span>
+          <span style="background:#d1fae5;color:#065f46;font-size:10px;padding:2px 8px;border-radius:10px;-webkit-print-color-adjust:exact;print-color-adjust:exact;">Docker</span>
+          <span style="background:#d1fae5;color:#065f46;font-size:10px;padding:2px 8px;border-radius:10px;-webkit-print-color-adjust:exact;print-color-adjust:exact;">Kubernetes</span>
+          <span style="background:#d1fae5;color:#065f46;font-size:10px;padding:2px 8px;border-radius:10px;-webkit-print-color-adjust:exact;print-color-adjust:exact;">GitLab CI</span>
+          <span style="background:#d1fae5;color:#065f46;font-size:10px;padding:2px 8px;border-radius:10px;-webkit-print-color-adjust:exact;print-color-adjust:exact;">Ansible</span>
+          <span style="background:#ede9fe;color:#5b21b6;font-size:10px;padding:2px 8px;border-radius:10px;-webkit-print-color-adjust:exact;print-color-adjust:exact;">Jira</span>
+          <span style="background:#ede9fe;color:#5b21b6;font-size:10px;padding:2px 8px;border-radius:10px;-webkit-print-color-adjust:exact;print-color-adjust:exact;">TestLink</span>
+          <span style="background:#ede9fe;color:#5b21b6;font-size:10px;padding:2px 8px;border-radius:10px;-webkit-print-color-adjust:exact;print-color-adjust:exact;">Mantis</span>
+          <span style="background:#fef3c7;color:#92400e;font-size:10px;padding:2px 8px;border-radius:10px;-webkit-print-color-adjust:exact;print-color-adjust:exact;">SonarQube</span>
+          <span style="background:#cffafe;color:#155e75;font-size:10px;padding:2px 8px;border-radius:10px;-webkit-print-color-adjust:exact;print-color-adjust:exact;">Java</span>
+          <span style="background:#cffafe;color:#155e75;font-size:10px;padding:2px 8px;border-radius:10px;-webkit-print-color-adjust:exact;print-color-adjust:exact;">Python</span>
+          <span style="background:#cffafe;color:#155e75;font-size:10px;padding:2px 8px;border-radius:10px;-webkit-print-color-adjust:exact;print-color-adjust:exact;">JavaScript</span>
+          <span style="background:#cffafe;color:#155e75;font-size:10px;padding:2px 8px;border-radius:10px;-webkit-print-color-adjust:exact;print-color-adjust:exact;">PHP</span>
+          <span style="background:#fee2e2;color:#991b1b;font-size:10px;padding:2px 8px;border-radius:10px;-webkit-print-color-adjust:exact;print-color-adjust:exact;">Agile</span>
+          <span style="background:#fee2e2;color:#991b1b;font-size:10px;padding:2px 8px;border-radius:10px;-webkit-print-color-adjust:exact;print-color-adjust:exact;">Scrum</span>
         </div>
       </div>
 
