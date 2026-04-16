@@ -111,36 +111,48 @@
     .role-pm{background:#dbeafe;color:#1e40af;}
     .role-qa{background:#d1fae5;color:#065f46;}
     .role-dev{background:#ede9fe;color:#5b21b6;}
-    /* EXPERTISE STRIP */
-    .expertise-strip{background:linear-gradient(135deg,#0f172a,#1e3a5f);padding:36px 48px;}
-    .expertise-strip h2{color:#fff;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;text-align:center;margin-bottom:24px;opacity:.7;}
-    .expertise-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
-    .exp-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:20px;text-align:center;transition:background .2s,transform .2s;}
-    .exp-card:hover{background:rgba(255,255,255,.12);transform:translateY(-3px);}
-    .exp-card .ec-icon{font-size:28px;margin-bottom:10px;}
-    .exp-card .ec-title{font-size:13px;font-weight:700;color:#fff;margin-bottom:6px;}
-    .exp-card .ec-desc{font-size:11px;color:rgba(255,255,255,.6);line-height:1.6;}
-    /* TOOLS STRIP */
-    .tools-strip{background:#f8faff;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:20px 48px;}
-    .tools-strip h2{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--muted);text-align:center;margin-bottom:14px;}
-    .tools-row{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;}
-    .tool-pill{background:#fff;border:1px solid var(--border);border-radius:20px;padding:5px 14px;font-size:12px;font-weight:500;color:var(--navy);display:flex;align-items:center;gap:5px;transition:border-color .2s,box-shadow .2s;}
-    .tool-pill:hover{border-color:var(--blue);box-shadow:0 2px 8px rgba(37,99,235,.15);}
-    /* FOOTER */
-    .footer{background:linear-gradient(135deg,#0f172a 0%,#1e3a5f 100%);color:#fff;padding:40px 48px 28px;}
-    .footer-inner{display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px;margin-bottom:32px;}
-    .footer-col h4{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,.5);margin-bottom:14px;}
-    .footer-col p,.footer-col a{font-size:13px;color:rgba(255,255,255,.8);display:block;margin-bottom:8px;text-decoration:none;transition:color .2s;}
-    .footer-col a:hover{color:#fff;}
-    .footer-col .contact-item{display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(255,255,255,.8);margin-bottom:10px;}
-    .social-links{display:flex;gap:10px;margin-top:4px;}
-    .social-btn{width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:16px;transition:background .2s,transform .2s;text-decoration:none;}
-    .social-btn:hover{background:rgba(255,255,255,.2);transform:translateY(-2px);}
-    .footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;}
-    .footer-bottom p{font-size:12px;color:rgba(255,255,255,.4);}
-    .footer-badge{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:4px 12px;font-size:11px;color:rgba(255,255,255,.6);}
-    @media print{body{background:#fff;}.page{box-shadow:none;margin:0;border-radius:0;}.hero,.expertise-strip,.footer{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
-    @media(max-width:720px){.body{grid-template-columns:1fr;}.hero-inner{flex-direction:column;}.hero,.main,.sidebar,.expertise-strip,.tools-strip,.footer{padding:24px 16px;}.proj-groups,.expertise-grid,.footer-inner{grid-template-columns:1fr;}.stats-bar{flex-wrap:wrap;gap:10px;padding:14px 16px;}}
+    /* SLIM FOOTER */
+    .footer{background:linear-gradient(135deg,#0f172a,#1e3a5f);padding:24px 48px;}
+    .footer-main{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+    .footer-name{font-size:15px;font-weight:700;color:#fff;}
+    .footer-sub{font-size:12px;color:rgba(255,255,255,.55);margin-top:3px;}
+    .footer-contacts{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:10px;}
+    .footer-contacts a{font-size:12px;color:rgba(255,255,255,.7);text-decoration:none;transition:color .2s;}
+    .footer-contacts a:hover{color:#fff;}
+    .footer-right{text-align:right;}
+    .footer-copy{font-size:11px;color:rgba(255,255,255,.4);margin-top:10px;}
+    .footer-badge{color:rgba(255,255,255,.5);}
+    /* PRINT BUTTONS */
+    .print-actions{display:flex;gap:10px;justify-content:flex-end;}
+    .btn-print,.btn-pdf{border:none;border-radius:8px;padding:8px 16px;font-size:12px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:5px;transition:transform .15s,box-shadow .15s;}
+    .btn-print{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.2);}
+    .btn-print:hover{background:rgba(255,255,255,.22);transform:translateY(-1px);}
+    .btn-pdf{background:linear-gradient(135deg,#2563eb,#06b6d4);color:#fff;box-shadow:0 4px 12px rgba(37,99,235,.4);}
+    .btn-pdf:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(37,99,235,.5);}
+    /* SOCIAL SIDEBAR */
+    @keyframes slideInRight{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
+    .social-sidebar{position:fixed;right:0;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:0;z-index:999;border-radius:12px 0 0 12px;overflow:hidden;box-shadow:-4px 0 20px rgba(0,0,0,.15);}
+    .soc-btn{width:44px;height:44px;display:flex;align-items:center;justify-content:center;transition:width .25s ease,transform .2s;overflow:hidden;position:relative;}
+    .soc-btn svg{width:20px;height:20px;flex-shrink:0;transition:transform .2s;}
+    .soc-btn:hover{width:54px;transform:scale(1.08);}
+    .soc-btn:hover svg{transform:scale(1.15);}
+    .soc-btn.linkedin{background:#0A66C2;color:#fff;animation:slideInRight .4s ease .1s both;}
+    .soc-btn.github{background:#24292e;color:#fff;animation:slideInRight .4s ease .2s both;}
+    .soc-btn.twitter{background:#000;color:#fff;animation:slideInRight .4s ease .3s both;}
+    .soc-btn.upwork{background:#14a800;color:#fff;animation:slideInRight .4s ease .4s both;}
+    .soc-btn.youtube{background:#FF0000;color:#fff;animation:slideInRight .4s ease .5s both;}
+    /* PRINT */
+    @media print{
+      body{background:#fff !important;}
+      .page{box-shadow:none !important;margin:0 !important;border-radius:0 !important;max-width:100% !important;}
+      .footer,.print-actions,.social-sidebar,.stats-bar{display:none !important;}
+      .body{grid-template-columns:220px 1fr !important;}
+      .proj-groups{grid-template-columns:1fr 1fr !important;}
+      .hero,.pg-head{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+      .section{margin-bottom:18px !important;}
+      a{color:inherit !important;text-decoration:none !important;}
+    }
+    @media(max-width:720px){.body{grid-template-columns:1fr;}.hero-inner{flex-direction:column;}.hero,.main,.sidebar,.footer{padding:20px 16px;}.proj-groups,.footer-main{grid-template-columns:1fr;flex-direction:column;}.stats-bar{flex-wrap:wrap;gap:8px;padding:12px 16px;}.social-sidebar{display:none;}}
   </style>
 </head>
 <body>
@@ -453,106 +465,48 @@
     </main>
   </div>
 
-  <!-- ══ EXPERTISE STRIP ══ -->
-  <div class="expertise-strip">
-    <h2>🌟 Areas of Expertise</h2>
-    <div class="expertise-grid">
-      <div class="exp-card">
-        <div class="ec-icon">🧪</div>
-        <div class="ec-title">Manual &amp; Automation Testing</div>
-        <div class="ec-desc">Functional · Regression · UAT · Exploratory · Performance · Security · API Testing</div>
-      </div>
-      <div class="exp-card">
-        <div class="ec-icon">🤖</div>
-        <div class="ec-title">Test Automation Frameworks</div>
-        <div class="ec-desc">Web UI · API · E2E · Selenium · Cypress · Katalon · JMeter · CI/CD Integration</div>
-      </div>
-      <div class="exp-card">
-        <div class="ec-icon">🚀</div>
-        <div class="ec-title">DevOps &amp; CI/CD</div>
-        <div class="ec-desc">Jenkins · GitLab CI · Docker · Kubernetes · Ansible · Infrastructure as Code</div>
-      </div>
-      <div class="exp-card">
-        <div class="ec-icon">📋</div>
-        <div class="ec-title">Project Management</div>
-        <div class="ec-desc">Agile · Scrum · Risk Management · Stakeholder Reporting · Multi-vendor Delivery</div>
-      </div>
-      <div class="exp-card">
-        <div class="ec-icon">🏦</div>
-        <div class="ec-title">Banking &amp; Fintech Systems</div>
-        <div class="ec-desc">Core Banking · Payment Integration · Remittance · Digital Banking · ERP Systems</div>
-      </div>
-      <div class="exp-card">
-        <div class="ec-icon">🛡️</div>
-        <div class="ec-title">Quality Assurance Leadership</div>
-        <div class="ec-desc">QA Strategy · Code Quality · SonarQube · Team Mentoring · Process Improvement</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ══ TOOLS STRIP ══ -->
-  <div class="tools-strip">
-    <h2>🛠️ Tools &amp; Technologies</h2>
-    <div class="tools-row">
-      <span class="tool-pill">🔬 Selenium</span>
-      <span class="tool-pill">🌲 Cypress</span>
-      <span class="tool-pill">📦 Katalon Studio</span>
-      <span class="tool-pill">⚡ JMeter</span>
-      <span class="tool-pill">📮 Postman</span>
-      <span class="tool-pill">🐳 Docker</span>
-      <span class="tool-pill">☸️ Kubernetes</span>
-      <span class="tool-pill">🔧 Jenkins</span>
-      <span class="tool-pill">🦊 GitLab CI</span>
-      <span class="tool-pill">📊 SonarQube</span>
-      <span class="tool-pill">🎯 Jira</span>
-      <span class="tool-pill">🔗 TestLink</span>
-      <span class="tool-pill">🐛 Mantis</span>
-      <span class="tool-pill">📋 Trello</span>
-      <span class="tool-pill">⚙️ Ansible</span>
-      <span class="tool-pill">👁️ Nagios</span>
-      <span class="tool-pill">☕ Java</span>
-      <span class="tool-pill">🐘 PHP</span>
-      <span class="tool-pill">🟨 JavaScript</span>
-      <span class="tool-pill">🐍 Python</span>
-      <span class="tool-pill">🔷 TypeScript</span>
-      <span class="tool-pill">🖥️ ManageEngine</span>
-    </div>
-  </div>
-
   <!-- ══ FOOTER ══ -->
   <div class="footer">
-    <div class="footer-inner">
-      <div class="footer-col">
-        <h4>Contact</h4>
-        <div class="contact-item">📧 <a href="mailto:meseretinsa@gmail.com">meseretinsa@gmail.com</a></div>
-        <div class="contact-item">📞 <span>+251 912 465 247</span></div>
-        <div class="contact-item">📍 <span>Addis Ababa, Ethiopia</span></div>
-      </div>
-      <div class="footer-col">
-        <h4>Connect</h4>
-        <div class="social-links">
-          <a href="https://github.com/meseretak" target="_blank" class="social-btn" title="GitHub">💻</a>
-          <a href="https://www.linkedin.com/in/meseret-akalu-76363121b/" target="_blank" class="social-btn" title="LinkedIn">🔗</a>
-          <a href="mailto:meseretinsa@gmail.com" class="social-btn" title="Email">📧</a>
+    <div class="footer-main">
+      <div class="footer-left">
+        <div class="footer-name">Meseret Akalu Belayneh</div>
+        <div class="footer-sub">Principal QA Engineer · Project Manager · Software Developer</div>
+        <div class="footer-contacts">
+          <a href="mailto:meseretinsa@gmail.com">📧 meseretinsa@gmail.com</a>
+          <a href="tel:+251912465247">📞 +251 912 465 247</a>
+          <a href="#">📍 Addis Ababa, Ethiopia</a>
         </div>
-        <p style="margin-top:12px;font-size:12px;color:rgba(255,255,255,.5);">Open to international opportunities</p>
       </div>
-      <div class="footer-col">
-        <h4>Quick Stats</h4>
-        <p>🏦 Awash Bank S.C. — Current</p>
-        <p>🏛️ INSA — 2015 to 2019</p>
-        <p>🎓 BSc Computer Science — 3.21 GPA</p>
-        <p>🏅 7 Professional Certifications</p>
+      <div class="footer-right">
+        <div class="print-actions">
+          <button onclick="window.print()" class="btn-print">🖨️ Print CV</button>
+          <button onclick="downloadPDF()" class="btn-pdf">⬇️ Download PDF</button>
+        </div>
+        <div class="footer-copy">© 2026 Meseret Akalu · <span class="footer-badge">🌟 "Quality is not an act, but a habit"</span></div>
       </div>
-    </div>
-    <div class="footer-bottom">
-      <p>© 2026 Meseret Akalu Belayneh · All rights reserved</p>
-      <span class="footer-badge">🌟 "Quality is not an act, but a habit"</span>
-      <span class="footer-badge">Built with HTML · Deployed on GitHub Pages</span>
     </div>
   </div>
 
 </div><!-- /page -->
+
+<!-- ══ SOCIAL SIDEBAR ══ -->
+<div class="social-sidebar">
+  <a href="https://www.linkedin.com/in/meseret-akalu-76363121b/" target="_blank" class="soc-btn linkedin" title="LinkedIn">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+  </a>
+  <a href="https://github.com/meseretak" target="_blank" class="soc-btn github" title="GitHub">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+  </a>
+  <a href="https://x.com/meseretak" target="_blank" class="soc-btn twitter" title="X / Twitter">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+  </a>
+  <a href="https://www.upwork.com/freelancers/~011d6bf29d008be2ca" target="_blank" class="soc-btn upwork" title="Upwork">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.561 13.158c-1.102 0-2.135-.467-3.074-1.227l.228-1.076.008-.042c.207-1.143.849-3.06 2.839-3.06 1.492 0 2.703 1.212 2.703 2.703-.001 1.489-1.212 2.702-2.704 2.702zm0-8.14c-2.539 0-4.51 1.649-5.31 4.366-1.22-1.834-2.148-4.036-2.687-5.892H7.828v7.112c-.002 1.406-1.141 2.546-2.547 2.546-1.405 0-2.543-1.14-2.543-2.546V3.492H0v7.112c0 2.914 2.37 5.303 5.281 5.303 2.913 0 5.283-2.389 5.283-5.303v-1.19c.529 1.107 1.182 2.229 1.974 3.221l-1.673 7.873h2.797l1.213-5.71c1.063.679 2.285 1.109 3.686 1.109 3 0 5.439-2.452 5.439-5.45 0-3-2.439-5.439-5.439-5.439z"/></svg>
+  </a>
+  <a href="https://www.youtube.com/@coctube" target="_blank" class="soc-btn youtube" title="YouTube">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+  </a>
+</div>
 <script>
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => { if(e.isIntersecting){ e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; }});
@@ -562,6 +516,29 @@
     el.style.transition='opacity .4s ease,transform .4s ease';
     io.observe(el);
   });
+
+  function downloadPDF() {
+    // Use browser's built-in Save as PDF via print dialog
+    const style = document.createElement('style');
+    style.id = 'pdf-override';
+    style.textContent = `
+      @media print {
+        .expertise-strip, .tools-strip, .footer, .print-actions, .stats-bar { display: none !important; }
+        body { background: #fff !important; }
+        .page { box-shadow: none !important; margin: 0 !important; border-radius: 0 !important; max-width: 100% !important; }
+        .body { grid-template-columns: 220px 1fr !important; }
+        .proj-groups { grid-template-columns: 1fr 1fr !important; }
+        .hero, .pg-head { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      }
+    `;
+    document.head.appendChild(style);
+    // Set document title so the saved PDF filename is meaningful
+    const prev = document.title;
+    document.title = 'Meseret_Akalu_CV';
+    window.print();
+    document.title = prev;
+    setTimeout(() => { const s = document.getElementById('pdf-override'); if(s) s.remove(); }, 1000);
+  }
 </script>
 </body>
 </html>
