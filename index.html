@@ -111,8 +111,36 @@
     .role-pm{background:#dbeafe;color:#1e40af;}
     .role-qa{background:#d1fae5;color:#065f46;}
     .role-dev{background:#ede9fe;color:#5b21b6;}
-    @media print{body{background:#fff;}.page{box-shadow:none;margin:0;border-radius:0;}.hero{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
-    @media(max-width:720px){.body{grid-template-columns:1fr;}.hero-inner{flex-direction:column;}.hero,.main,.sidebar{padding:24px 16px;}.proj-groups{grid-template-columns:1fr;}.stats-bar{flex-wrap:wrap;gap:10px;padding:14px 16px;}}
+    /* EXPERTISE STRIP */
+    .expertise-strip{background:linear-gradient(135deg,#0f172a,#1e3a5f);padding:36px 48px;}
+    .expertise-strip h2{color:#fff;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;text-align:center;margin-bottom:24px;opacity:.7;}
+    .expertise-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+    .exp-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:20px;text-align:center;transition:background .2s,transform .2s;}
+    .exp-card:hover{background:rgba(255,255,255,.12);transform:translateY(-3px);}
+    .exp-card .ec-icon{font-size:28px;margin-bottom:10px;}
+    .exp-card .ec-title{font-size:13px;font-weight:700;color:#fff;margin-bottom:6px;}
+    .exp-card .ec-desc{font-size:11px;color:rgba(255,255,255,.6);line-height:1.6;}
+    /* TOOLS STRIP */
+    .tools-strip{background:#f8faff;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:20px 48px;}
+    .tools-strip h2{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--muted);text-align:center;margin-bottom:14px;}
+    .tools-row{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;}
+    .tool-pill{background:#fff;border:1px solid var(--border);border-radius:20px;padding:5px 14px;font-size:12px;font-weight:500;color:var(--navy);display:flex;align-items:center;gap:5px;transition:border-color .2s,box-shadow .2s;}
+    .tool-pill:hover{border-color:var(--blue);box-shadow:0 2px 8px rgba(37,99,235,.15);}
+    /* FOOTER */
+    .footer{background:linear-gradient(135deg,#0f172a 0%,#1e3a5f 100%);color:#fff;padding:40px 48px 28px;}
+    .footer-inner{display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px;margin-bottom:32px;}
+    .footer-col h4{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,.5);margin-bottom:14px;}
+    .footer-col p,.footer-col a{font-size:13px;color:rgba(255,255,255,.8);display:block;margin-bottom:8px;text-decoration:none;transition:color .2s;}
+    .footer-col a:hover{color:#fff;}
+    .footer-col .contact-item{display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(255,255,255,.8);margin-bottom:10px;}
+    .social-links{display:flex;gap:10px;margin-top:4px;}
+    .social-btn{width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:16px;transition:background .2s,transform .2s;text-decoration:none;}
+    .social-btn:hover{background:rgba(255,255,255,.2);transform:translateY(-2px);}
+    .footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;}
+    .footer-bottom p{font-size:12px;color:rgba(255,255,255,.4);}
+    .footer-badge{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:4px 12px;font-size:11px;color:rgba(255,255,255,.6);}
+    @media print{body{background:#fff;}.page{box-shadow:none;margin:0;border-radius:0;}.hero,.expertise-strip,.footer{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
+    @media(max-width:720px){.body{grid-template-columns:1fr;}.hero-inner{flex-direction:column;}.hero,.main,.sidebar,.expertise-strip,.tools-strip,.footer{padding:24px 16px;}.proj-groups,.expertise-grid,.footer-inner{grid-template-columns:1fr;}.stats-bar{flex-wrap:wrap;gap:10px;padding:14px 16px;}}
   </style>
 </head>
 <body>
@@ -424,7 +452,107 @@
 
     </main>
   </div>
-</div>
+
+  <!-- ══ EXPERTISE STRIP ══ -->
+  <div class="expertise-strip">
+    <h2>🌟 Areas of Expertise</h2>
+    <div class="expertise-grid">
+      <div class="exp-card">
+        <div class="ec-icon">🧪</div>
+        <div class="ec-title">Manual &amp; Automation Testing</div>
+        <div class="ec-desc">Functional · Regression · UAT · Exploratory · Performance · Security · API Testing</div>
+      </div>
+      <div class="exp-card">
+        <div class="ec-icon">🤖</div>
+        <div class="ec-title">Test Automation Frameworks</div>
+        <div class="ec-desc">Web UI · API · E2E · Selenium · Cypress · Katalon · JMeter · CI/CD Integration</div>
+      </div>
+      <div class="exp-card">
+        <div class="ec-icon">🚀</div>
+        <div class="ec-title">DevOps &amp; CI/CD</div>
+        <div class="ec-desc">Jenkins · GitLab CI · Docker · Kubernetes · Ansible · Infrastructure as Code</div>
+      </div>
+      <div class="exp-card">
+        <div class="ec-icon">📋</div>
+        <div class="ec-title">Project Management</div>
+        <div class="ec-desc">Agile · Scrum · Risk Management · Stakeholder Reporting · Multi-vendor Delivery</div>
+      </div>
+      <div class="exp-card">
+        <div class="ec-icon">🏦</div>
+        <div class="ec-title">Banking &amp; Fintech Systems</div>
+        <div class="ec-desc">Core Banking · Payment Integration · Remittance · Digital Banking · ERP Systems</div>
+      </div>
+      <div class="exp-card">
+        <div class="ec-icon">🛡️</div>
+        <div class="ec-title">Quality Assurance Leadership</div>
+        <div class="ec-desc">QA Strategy · Code Quality · SonarQube · Team Mentoring · Process Improvement</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ TOOLS STRIP ══ -->
+  <div class="tools-strip">
+    <h2>🛠️ Tools &amp; Technologies</h2>
+    <div class="tools-row">
+      <span class="tool-pill">🔬 Selenium</span>
+      <span class="tool-pill">🌲 Cypress</span>
+      <span class="tool-pill">📦 Katalon Studio</span>
+      <span class="tool-pill">⚡ JMeter</span>
+      <span class="tool-pill">📮 Postman</span>
+      <span class="tool-pill">🐳 Docker</span>
+      <span class="tool-pill">☸️ Kubernetes</span>
+      <span class="tool-pill">🔧 Jenkins</span>
+      <span class="tool-pill">🦊 GitLab CI</span>
+      <span class="tool-pill">📊 SonarQube</span>
+      <span class="tool-pill">🎯 Jira</span>
+      <span class="tool-pill">🔗 TestLink</span>
+      <span class="tool-pill">🐛 Mantis</span>
+      <span class="tool-pill">📋 Trello</span>
+      <span class="tool-pill">⚙️ Ansible</span>
+      <span class="tool-pill">👁️ Nagios</span>
+      <span class="tool-pill">☕ Java</span>
+      <span class="tool-pill">🐘 PHP</span>
+      <span class="tool-pill">🟨 JavaScript</span>
+      <span class="tool-pill">🐍 Python</span>
+      <span class="tool-pill">🔷 TypeScript</span>
+      <span class="tool-pill">🖥️ ManageEngine</span>
+    </div>
+  </div>
+
+  <!-- ══ FOOTER ══ -->
+  <div class="footer">
+    <div class="footer-inner">
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <div class="contact-item">📧 <a href="mailto:meseretinsa@gmail.com">meseretinsa@gmail.com</a></div>
+        <div class="contact-item">📞 <span>+251 912 465 247</span></div>
+        <div class="contact-item">📍 <span>Addis Ababa, Ethiopia</span></div>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <div class="social-links">
+          <a href="https://github.com/meseretak" target="_blank" class="social-btn" title="GitHub">💻</a>
+          <a href="https://www.linkedin.com/in/meseret-akalu-76363121b/" target="_blank" class="social-btn" title="LinkedIn">🔗</a>
+          <a href="mailto:meseretinsa@gmail.com" class="social-btn" title="Email">📧</a>
+        </div>
+        <p style="margin-top:12px;font-size:12px;color:rgba(255,255,255,.5);">Open to international opportunities</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Stats</h4>
+        <p>🏦 Awash Bank S.C. — Current</p>
+        <p>🏛️ INSA — 2015 to 2019</p>
+        <p>🎓 BSc Computer Science — 3.21 GPA</p>
+        <p>🏅 7 Professional Certifications</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Meseret Akalu Belayneh · All rights reserved</p>
+      <span class="footer-badge">🌟 "Quality is not an act, but a habit"</span>
+      <span class="footer-badge">Built with HTML · Deployed on GitHub Pages</span>
+    </div>
+  </div>
+
+</div><!-- /page -->
 <script>
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => { if(e.isIntersecting){ e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; }});
